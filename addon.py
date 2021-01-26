@@ -6,7 +6,7 @@ import os
 import re
 import sys
 import xbmc, xbmcplugin, xbmcaddon, xbmcgui
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, element as bs4Element
 import requests
 import json
 from datetime import datetime
@@ -122,7 +122,10 @@ def getVideoId(path):
 
     scripts = soup.findAll('script')
     for script in scripts:
-        script = script.text
+        if hasattr(bs4Element, 'Script') and isinstance(script.string, bs4Element.Script):
+            script = script.string
+        else:
+            script = script.text
         match = re.search('OO\.Player\.create[^,]*,\s?"([^"]*)', script)
         if match is not None:
             video_id.update({'id': match.group(1)})
