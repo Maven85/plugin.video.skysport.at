@@ -1,3 +1,4 @@
+1.1.5 changes for beautifulsoup 4.9
 1.1.4 updated dependencies for Kodi Jarvis
 1.1.3 changed url for livestream
 1.1.2 added assets tag in addon.xml
